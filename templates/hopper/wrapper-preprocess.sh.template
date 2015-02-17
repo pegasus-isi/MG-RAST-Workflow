@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Environment Variables
+export PERL5LIB=${PIPELINE_DIR}/lib:${PIPELINE_DIR}/conf:${MGRAST_DIR}/lib/perl
+export PYTHONPATH=${MGRAST_DIR}/lib/python/biopython-1.65:\${PYTHONPATH}
+export PATH=${PIPELINE_DIR}/bin:${PIPELINE_DIR}/stages:\${PATH}
+
+# Modules
+module load python
+
+# Testing executables
+check() {
+	if ! which \$1 >/dev/null; then
+		echo \"ERROR: Dependency not available: \$1\"
+		exit 1
+	fi
+}
+
+check python
+
+# Command Execution
+${PIPELINE_DIR}/awecmd/awe_preprocess.pl \$@

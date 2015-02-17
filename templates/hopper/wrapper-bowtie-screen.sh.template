@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Environment Variables
+export PERL5LIB=${PIPELINE_DIR}/lib:${PIPELINE_DIR}/conf:${MGRAST_DIR}/lib/perl
+export PYTHONPATH=${MGRAST_DIR}/lib/python/biopython-1.65:\${PYTHONPATH}
+export PATH=${PIPELINE_DIR}/bin:${PIPELINE_DIR}/stages:\${PATH}
+export REFDBPATH=${MGRAST_DIR}/indexes
+export OMP_NUM_THREADS=8
+
+# Modules
+module load python
+module load bowtie2
+
+# Testing executables
+check() {
+	if ! which \$1 >/dev/null; then
+		echo \"ERROR: Dependency not available: \$1\"
+		exit 1
+	fi
+}
+
+check python
+check bowtie2
+
+# Command Execution
+aprun -n 1 -d 6 ${PIPELINE_DIR}/awecmd/awe_bowtie_screen.pl \$@
