@@ -1,0 +1,23 @@
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<sitecatalog xmlns=\"http://pegasus.isi.edu/schema/sitecatalog\"
+             xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+             xsi:schemaLocation=\"http://pegasus.isi.edu/schema/sitecatalog http://pegasus.isi.edu/schema/sc-4.0.xsd\"
+             version=\"4.0\">
+
+	<site handle=\"local\" arch=\"x86_64\" os=\"LINUX\">
+	</site>	
+
+	<site handle=\"${SITE}\" arch=\"x86_64\" os=\"LINUX\">
+		<grid type=\"gt5\" contact=\"${SITE_URL}/jobmanager\" scheduler=\"Fork\" jobtype=\"auxillary\"/>
+		<grid type=\"gt5\" contact=\"${SITE_URL}/jobmanager-pbs\" scheduler=\"PBS\" jobtype=\"compute\"/>
+    		<directory type=\"shared-scratch\" path=\"/${SCRATCH_DIR}\">
+      			<file-server operation=\"all\" url=\"gsiftp://${SITE_URL}/${SCRATCH_DIR}\"/>
+    		</directory>
+    		<directory type=\"shared-storage\" path=\"${OUTPUT_DIR}\">
+      			<file-server operation=\"all\" url=\"gsiftp://${SITE_URL}/${OUTPUT_DIR}\" />
+    		</directory>
+    		<profile namespace=\"env\" key=\"PEGASUS_HOME\">${PEGASUS_HOME}</profile>
+		<profile namespace=\"globus\" key=\"project\">${PROJECT}</profile>
+    		<profile namespace=\"globus\" key=\"queue\">${QUEUE}</profile>
+  	</site>
+</sitecatalog>

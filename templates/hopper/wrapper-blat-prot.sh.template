@@ -4,7 +4,7 @@
 export PERL5LIB=${PIPELINE_DIR}/lib:${PIPELINE_DIR}/conf:${MGRAST_DIR}/lib/perl
 export PYTHONPATH=${MGRAST_DIR}/lib/python/biopython-1.65:\${PYTHONPATH}
 export PATH=${PIPELINE_DIR}/bin:${PIPELINE_DIR}/stages:${MGRAST_DIR}/superblat:\${PATH}
-export REFDBPATH=${MGRAST_DIR}/md5rna
+export REFDBPATH=${MGRAST_DIR}/predata
 export OMP_NUM_THREADS=24
 
 # Modules

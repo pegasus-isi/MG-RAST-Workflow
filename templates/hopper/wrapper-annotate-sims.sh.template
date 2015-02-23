@@ -19,5 +19,9 @@ check() {
 
 check python
 
+if [ ! -f m5nr_v1.bdb ]; then
+	ln -s ${MGRAST_DIR}/predata/m5nr_v1.bdb m5nr_v1.bdb
+fi
+
 # Command Execution
 ${PIPELINE_DIR}/awecmd/awe_annotate_sims.pl \$@
