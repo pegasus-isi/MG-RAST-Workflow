@@ -192,7 +192,7 @@ class MGRASTWorkflow(object):
 		annotatesims1Job.uses("650.aa.expand.lca", link=Link.OUTPUT, transfer=False)
 		annotatesims1Job.uses("650.aa.expand.ontology", link=Link.OUTPUT, transfer=False)
 		
-		annotatesims1Job.profile("globus", "maxwalltime", "360")
+		annotatesims1Job.profile("globus", "maxwalltime", "720")
 		dax.addJob(annotatesims1Job)
 		dax.depends(annotatesims1Job, blatprotJob)
 
